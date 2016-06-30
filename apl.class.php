@@ -8,7 +8,7 @@ class aplicaciones{
 	 * OUTPUT: $result resultado de la consulta*/	 
 	 function obtienedatos($query){
 	 	
-	 	$cliente = new nusoap_client("http://189.203.7.229/webservice/service.asmx?WSDL", true);
+	 	$cliente = new nusoap_client("http://URL/webservice/service.asmx?WSDL", true);
 
 			$resultado = $cliente->call(
 			     "ConsultaSimple", 
