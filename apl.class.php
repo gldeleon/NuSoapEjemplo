@@ -14,7 +14,6 @@ class aplicaciones{
 			     "ConsultaSimple", 
 			     
 			      array(
-			            //'squery'=>'SELECT  top 1 totalpuntos FROM smnctepuntos WHERE cliente = \'ABASTOS 3\' ORDER BY Id DESC'
 			            'squery'=> $query
 			            )
 			);
