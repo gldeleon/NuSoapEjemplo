@@ -1,25 +1,22 @@
 <?php
 require_once('lib/nusoap.php');
 
-class aplicaciones{
-	
-	/*Método para obtener datos por webservice
-	 * INPUT: $query consulta para el webservice
-	 * OUTPUT: $result resultado de la consulta*/	 
-	 function obtienedatos($query){
-	 	
-	 	$cliente = new nusoap_client("http://URL/webservice/service.asmx?WSDL", true);
+ $oSoapClient = new nusoap_client('http://serviciosweb.soriana.com/RecibeCfd/wseDocRecibo.asmx?wsdl', true); 
 
-			$resultado = $cliente->call(
-			     "ConsultaSimple", 
-			     
-			      array(
-			            'squery'=> $query
-			            )
-			);
-			
-			return $resultado['ConsultaSimpleResult'];
-	 }
+$param = array('XMLCFD' => $xml);
+
+$oSoapClient->loadWSDL();
+$respuesta = $oSoapClient->call("RecibeCFD", $param);
+if ($oSoapClient->fault) { 
+        echo 'No se pudo completar la operación '.$oSoapClient->getError();
+        die();
+} else { // No
+        $sError = $oSoapClient->getError();
+       if ($sError) { 
+                echo 'Error!:'.$sError;
+        }
 }
-
-?>
+echo '<br>';
+echo '<pre>';
+print_r( $respuesta );
+echo '</pre>';  
